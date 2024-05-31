@@ -3,17 +3,28 @@ export default {
   props: {
     projectObject: Object,
   },
+  methods: {
+    getImagePath(image) {
+      return `http://127.0.0.1:8000/storage/${image}`;
+    },
+  },
 };
 </script>
 
 <template>
   <div class="col">
     <div class="card card-custom">
-      <!-- TODO: gestire immagini -->
+      <!-- TODO: cercare modo migliore per gestire immagini -->
       <img
-        :src="projectObject.img"
+        v-if="projectObject.img"
+        :src="getImagePath(projectObject.img)"
         class="card-img-top"
         :alt="projectObject.title"
+      />
+      <img
+        v-else
+        src="../../assets/img/img-placeholder.png"
+        class="card-img-top"
       />
       <div class="card-body">
         <h5 class="card-title">{{ projectObject.title }}</h5>
