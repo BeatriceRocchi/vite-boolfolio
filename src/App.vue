@@ -24,7 +24,7 @@ export default {
         })
         .then((result) => {
           this.projects = result.data.data;
-          this.totalPages = result.data.total / result.data.per_page;
+          this.totalPages = result.data.last_page;
         })
         .catch((error) => {
           console.log(error.message);
@@ -87,7 +87,7 @@ export default {
   flex-wrap: wrap;
 
   .col {
-    min-height: 400px;
+    min-height: 300px;
   }
 }
 </style>
