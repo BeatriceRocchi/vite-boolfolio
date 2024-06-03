@@ -32,13 +32,69 @@ export default {
 
   <!-- Section technologies -->
   <section id="section-tech">
-    <div class="container w-50">
+    <div class="container">
       <p class="section-intro">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, nobis
         vel officiis maiores, enim quidem sapiente rerum rem, dolores earum
         expedita debitis recusandae. Eius labore molestiae tempora atque aliquam
         provident.
       </p>
+
+      <div class="card">
+        <div class="row row-cols-2 text-center">
+          <!-- Frontend -->
+          <div class="col">
+            <div class="icon-box">
+              <i class="fa-regular fa-images"></i>
+            </div>
+
+            <h4>Frontend Developer</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum,
+              iste.
+            </p>
+
+            <h5>Languages</h5>
+            <ul>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>Sass</li>
+              <li>JavaScript</li>
+            </ul>
+
+            <h5>Tools</h5>
+            <ul>
+              <li>Bootstrap</li>
+              <li>Vue JS</li>
+            </ul>
+          </div>
+          <!-- /Frontend -->
+
+          <!-- Backend -->
+          <div class="col">
+            <div class="icon-box">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <h4>Backend Developer</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum,
+              iste.
+            </p>
+
+            <h5>Languages</h5>
+            <ul>
+              <li>PHP</li>
+            </ul>
+
+            <h5>Tools</h5>
+            <ul>
+              <li>Laravel</li>
+            </ul>
+          </div>
+          <!-- /Backend -->
+        </div>
+      </div>
     </div>
   </section>
   <!-- / Section technologies -->
@@ -83,6 +139,35 @@ export default {
     font-weight: 400;
     font-size: 1.2rem;
     text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .card {
+    .col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+
+      .icon-box {
+        height: 60px;
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-secondary;
+        border-radius: 50%;
+        i {
+          font-size: 1.8rem;
+          color: white;
+        }
+      }
+
+      h4,
+      h5 {
+        margin: 20px 0 10px;
+      }
+    }
   }
 }
 </style>

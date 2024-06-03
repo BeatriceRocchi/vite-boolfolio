@@ -31,6 +31,9 @@ header {
   height: 100px;
   color: white;
   background-color: $color-primary;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
 
   .container {
     display: flex;
