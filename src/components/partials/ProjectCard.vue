@@ -38,7 +38,7 @@ export default {
   min-width: 300px;
 
   .card-custom {
-    height: 100%;
+    min-height: 250px;
   }
 }
 </style>

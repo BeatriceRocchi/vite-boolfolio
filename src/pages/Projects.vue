@@ -3,27 +3,33 @@ import axios from "axios";
 import { store } from "../data/store";
 
 import ProjectCard from "../components/partials/ProjectCard.vue";
+import Paginator from "../components/partials/Paginator.vue";
 
 export default {
   name: "Projects",
 
   components: {
     ProjectCard,
+    Paginator,
   },
 
   data() {
     return {
       store,
       projects: [],
+      paginatorData: {},
     };
   },
 
   methods: {
-    getApi() {
+    getApi(apiUrl) {
       axios
-        .get(store.apiUrl)
+        .get(apiUrl)
         .then((result) => {
-          this.projects = result.data;
+          this.projects = result.data.data;
+          this.paginatorData.current_page = result.data.current_page;
+          this.paginatorData.links = result.data.links;
+          this.paginatorData.last_page = result.data.last_page;
         })
         .catch((error) => {
           console.log(error.message);
@@ -31,7 +37,7 @@ export default {
     },
   },
   mounted() {
-    this.getApi();
+    this.getApi(store.apiUrl + "projects");
   },
 };
 </script>
@@ -46,6 +52,10 @@ export default {
           :key="project.id"
           :projectObject="project"
         />
+      </div>
+
+      <div class="row">
+        <Paginator :paginator="paginatorData" @changePage="getApi" />
       </div>
     </div>
   </div>
