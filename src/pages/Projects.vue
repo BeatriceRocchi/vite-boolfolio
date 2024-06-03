@@ -4,6 +4,7 @@ import { store } from "../data/store";
 
 import ProjectCard from "../components/partials/ProjectCard.vue";
 import Paginator from "../components/partials/Paginator.vue";
+import Loader from "../components/partials/Loader.vue";
 
 export default {
   name: "Projects",
@@ -11,6 +12,7 @@ export default {
   components: {
     ProjectCard,
     Paginator,
+    Loader,
   },
 
   data() {
@@ -20,14 +22,18 @@ export default {
       types: [],
       technologies: [],
       paginatorData: {},
+      isLoading: true,
     };
   },
 
   methods: {
     getApi(apiUrl, type = "") {
+      this.isLoading = true;
+
       axios
         .get(apiUrl + type)
         .then((result) => {
+          this.isLoading = false;
           switch (type) {
             case "types":
               this.types = result.data;
@@ -46,6 +52,7 @@ export default {
           }
         })
         .catch((error) => {
+          this.isLoading = false;
           console.log(error.message);
         });
     },
@@ -59,44 +66,48 @@ export default {
 </script>
 
 <template>
-  <h2>My projects</h2>
+  <Loader v-if="isLoading" />
 
-  <div class="container d-flex justify-content-around my-4">
-    <div class="text-center">
-      <h6>Types</h6>
-      <span
-        class="badge badge-custom text-bg-primary"
-        v-for="item in types"
-        :key="`type-${item.id}`"
-      >
-        {{ item.name }}
-      </span>
-    </div>
+  <div v-else>
+    <h2>My projects</h2>
 
-    <div class="text-center">
-      <h6>Technologies</h6>
-      <span
-        class="badge badge-custom text-bg-success"
-        v-for="item in technologies"
-        :key="`tech-${item.id}`"
-      >
-        {{ item.name }}
-      </span>
-    </div>
-  </div>
-
-  <div class="card-wrapper">
-    <div class="container">
-      <div class="row row-gap-4">
-        <ProjectCard
-          v-for="project in projects"
-          :key="project.id"
-          :projectObject="project"
-        />
+    <div class="container d-flex justify-content-around my-4">
+      <div class="text-center">
+        <h6>Types</h6>
+        <span
+          class="badge badge-custom text-bg-primary"
+          v-for="item in types"
+          :key="`type-${item.id}`"
+        >
+          {{ item.name }}
+        </span>
       </div>
 
-      <div class="row">
-        <Paginator :paginator="paginatorData" @changePage="getApi" />
+      <div class="text-center">
+        <h6>Technologies</h6>
+        <span
+          class="badge badge-custom text-bg-success"
+          v-for="item in technologies"
+          :key="`tech-${item.id}`"
+        >
+          {{ item.name }}
+        </span>
+      </div>
+    </div>
+
+    <div class="card-wrapper">
+      <div class="container">
+        <div class="row row-gap-4">
+          <ProjectCard
+            v-for="project in projects"
+            :key="project.id"
+            :projectObject="project"
+          />
+        </div>
+
+        <div class="row">
+          <Paginator :paginator="paginatorData" @changePage="getApi" />
+        </div>
       </div>
     </div>
   </div>
