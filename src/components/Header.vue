@@ -5,7 +5,9 @@ export default {};
 <template>
   <header>
     <div class="container">
-      <div>Logo</div>
+      <div class="logo-box">
+        <img src="../assets/img/logo.png" alt="Logo" />
+      </div>
       <nav>
         <ul>
           <li><router-link :to="{ name: 'home' }">Home</router-link></li>
@@ -26,7 +28,7 @@ export default {};
 @import "../assets/scss/partials/variables.scss";
 
 header {
-  height: 80px;
+  height: 100px;
   color: white;
   background-color: $color-primary;
 
@@ -36,15 +38,25 @@ header {
     align-items: center;
     height: 100%;
 
+    .logo-box {
+      height: 100%;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+
     nav {
       ul {
         display: flex;
         li {
-          margin-left: 40px;
+          margin-left: 10px;
           a {
             color: inherit;
             text-decoration: none;
-            padding: 6px;
+            padding: 10px;
             border-radius: 8px;
 
             &.active {
