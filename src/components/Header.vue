@@ -44,6 +44,12 @@ header {
           a {
             color: inherit;
             text-decoration: none;
+            padding: 6px;
+            border-radius: 8px;
+
+            &.active {
+              background-color: rgba(255, 255, 255, 0.3);
+            }
           }
         }
       }

@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+h2 {
+  color: $color-primary;
+  margin: 40px 0;
+  text-align: center;
+}
+
 ul {
   margin: 0;
   list-style: none;
