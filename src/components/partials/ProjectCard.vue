@@ -17,7 +17,7 @@ export default {
 
         <div>
           <span class="badge text-bg-primary">
-            {{ projectObject.type.name }}
+            {{ projectObject.type?.name }}
           </span>
         </div>
 
@@ -29,16 +29,30 @@ export default {
           {{ technology.name }}
         </span>
       </div>
+      <router-link
+        :to="{ name: 'projectDetail', params: { slug: projectObject.slug } }"
+        class="btn btn-custom"
+        >More details</router-link
+      >
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import "../../assets/scss/partials/variables.scss";
+
 .col {
   min-width: 300px;
 
   .card-custom {
     min-height: 250px;
+
+    .btn-custom {
+      background-color: $color-secondary;
+      width: fit-content;
+      margin: 10px;
+      align-self: flex-end;
+    }
   }
 }
 </style>

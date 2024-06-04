@@ -108,6 +108,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 70%;
 
   h1 {
     margin-bottom: 30px;
