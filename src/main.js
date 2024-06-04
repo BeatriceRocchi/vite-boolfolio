@@ -1,4 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
+import "swiper/css/bundle";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import "./assets/scss/main.scss";
 
 import { router } from "./router";

@@ -3,20 +3,16 @@ import axios from "axios";
 import { store } from "../data/store";
 
 import ProjectCard from "../components/partials/ProjectCard.vue";
+import Paginator from "../components/partials/Paginator.vue";
 import Loader from "../components/partials/Loader.vue";
-
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Pagination } from "swiper/modules";
-import { Navigation } from "swiper/modules";
 
 export default {
   name: "Projects",
 
   components: {
     ProjectCard,
+    Paginator,
     Loader,
-    Swiper,
-    SwiperSlide,
   },
 
   data() {
@@ -25,6 +21,7 @@ export default {
       projects: [],
       types: [],
       technologies: [],
+      paginatorData: {},
       isLoading: true,
     };
   },
@@ -47,7 +44,10 @@ export default {
               break;
 
             default:
-              this.projects = result.data;
+              this.projects = result.data.data;
+              this.paginatorData.current_page = result.data.current_page;
+              this.paginatorData.links = result.data.links;
+              this.paginatorData.last_page = result.data.last_page;
               break;
           }
         })
@@ -56,19 +56,6 @@ export default {
           console.log(error.message);
         });
     },
-  },
-  setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
-    };
-    const onSlideChange = () => {
-      console.log("slide change");
-    };
-    return {
-      onSwiper,
-      onSlideChange,
-      modules: [Pagination, Navigation],
-    };
   },
   mounted() {
     this.getApi(store.apiUrl, "projects");
@@ -82,41 +69,57 @@ export default {
   <Loader v-if="isLoading" />
 
   <div v-else>
-    <h2>My recent projects</h2>
+    <h2>My projects</h2>
 
-    <div class="container">
-      <div class="slider-wrapper">
-        <swiper
-          :pagination="{
-            dynamicBullets: true,
-          }"
-          :navigation="true"
-          :modules="modules"
-          class="mySwiper"
-          :slides-per-view="3"
-          :space-between="50"
-          @swiper="onSwiper"
-          @slideChange="onSlideChange"
+    <div class="container d-flex justify-content-around my-4">
+      <div class="text-center">
+        <h6>Types</h6>
+        <span
+          class="badge badge-custom text-bg-primary"
+          v-for="item in types"
+          :key="`type-${item.id}`"
         >
-          <swiper-slide
-            class="my-5"
+          {{ item.name }}
+        </span>
+      </div>
+
+      <div class="text-center">
+        <h6>Technologies</h6>
+        <span
+          class="badge badge-custom text-bg-success"
+          v-for="item in technologies"
+          :key="`tech-${item.id}`"
+        >
+          {{ item.name }}
+        </span>
+      </div>
+    </div>
+
+    <div class="card-wrapper">
+      <div class="container">
+        <div class="row row-gap-4">
+          <ProjectCard
             v-for="project in projects"
             :key="project.id"
-          >
-            <ProjectCard :projectObject="project" />
-          </swiper-slide>
-        </swiper>
+            :projectObject="project"
+          />
+        </div>
+
+        <div class="row">
+          <Paginator :paginator="paginatorData" @changePage="getApi" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.slider-wrapper {
-  margin: 0 auto;
+.badge-custom {
+  margin: 0 5px;
+}
 
-  .mySwiper {
-    padding: 0 50px;
-  }
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
