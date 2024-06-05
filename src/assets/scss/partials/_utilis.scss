@@ -7,3 +7,43 @@
     color: white;
   }
 }
+
+// .btn-custom-primary-outline {
+//   background-color: white;
+//   color: $color-primary;
+//   border: 3px solid $color-primary;
+//   border-radius: 20px;
+
+//   &:hover {
+//     background-color: darken($color-primary, 5%);
+//     color: white;
+//   }
+// }
+
+.underline-effect {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background-color: $color-secondary;
+    bottom: -20px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.25s linear;
+  }
+
+  &:hover::after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+  }
+
+  &.thin-effect::after {
+    height: 3px;
+    bottom: -8px;
+  }
+}

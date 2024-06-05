@@ -9,7 +9,7 @@ export default {
   <section id="section-about">
     <div class="container">
       <div class="text-box">
-        <h1>Full Stack Developer</h1>
+        <h1 class="underline-effect">Full Stack Developer</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
           laboriosam, veritatis, ab molestias mollitia explicabo, omnis

@@ -10,40 +10,38 @@ export default {
   <div class="col">
     <div class="card card-custom">
       <div class="card-body">
-        <h5 class="card-title">{{ projectObject.title }}</h5>
+        <h3 class="card-title">
+          {{ projectObject.title }}
+        </h3>
+        <p class="card-text">
+          {{ projectObject.description }}
+        </p>
 
-        <div>
+        <div class="badge-container">
           <span class="badge text-bg-primary">
             {{ projectObject.type?.name }}
           </span>
-        </div>
 
-        <span
-          v-for="technology in projectObject.technologies"
-          :key="technology.id"
-          class="badge text-bg-success me-1"
-        >
-          {{ technology.name }}
-        </span>
-      </div>
-
-      <div class="card card-custom-back">
-        <div
-          class="card-body d-flex flex-column justify-content-center align-items-center h-100"
-        >
-          <p class="card-text text-center text-white">
-            {{ projectObject.description }}
-          </p>
-          <router-link
-            :to="{
-              name: 'projectDetail',
-              params: { slug: projectObject.slug },
-            }"
-            class="btn btn-custom"
-            >More details</router-link
-          >
+          <div>
+            <span
+              v-for="technology in projectObject.technologies"
+              :key="technology.id"
+              class="badge text-bg-success me-1"
+            >
+              {{ technology.name }}
+            </span>
+          </div>
         </div>
       </div>
+
+      <router-link
+        :to="{
+          name: 'projectDetail',
+          params: { slug: projectObject.slug },
+        }"
+        class="btn btn-custom-primary"
+        >View more</router-link
+      >
     </div>
   </div>
 </template>
@@ -58,55 +56,41 @@ export default {
     min-height: 350px;
     position: relative;
 
-    &-front {
-      min-height: 350px;
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+
+      .card-text {
+        min-height: 100px;
+      }
     }
 
-    &-back {
+    .badge-container {
+      margin: 20px 0;
+    }
+
+    .btn-custom-primary {
       display: none;
       position: absolute;
-      width: 100%;
-      height: 100%;
-      padding: 10px;
-      top: 0;
-      left: 0;
-      overflow-y: auto;
-
-      .btn-custom {
-        background-color: transparent;
-        color: white;
-        border: 2px solid white;
-        width: fit-content;
-        padding: 8px 16px;
-        border-radius: 20px;
-        margin-top: 20px;
-        font-size: 0.8rem;
-
-        &:hover {
-          background-color: white;
-          color: $color-primary;
-        }
-      }
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: fit-content;
+      text-transform: uppercase;
+      border-radius: 20px;
     }
 
     &:hover {
-      .card-custom-back {
-        animation: 0.9s expand ease-in-out;
+      box-shadow: 0 0 15px 5px rgba(black, 0.2);
+      transform: translateY(-20px);
+      transition: all 0.5s ease;
+
+      .btn-custom-primary {
         display: block;
-        background-color: $color-primary;
       }
     }
-  }
-}
-
-@keyframes expand {
-  0% {
-    transform: scale(0);
-    background-color: rgba($color-primary, 0.2);
-  }
-  100% {
-    transform: scale(1);
-    background-color: $color-primary;
   }
 }
 </style>

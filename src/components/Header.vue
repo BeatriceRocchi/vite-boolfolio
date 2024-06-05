@@ -10,12 +10,16 @@ export default {};
       </div>
       <nav>
         <ul>
-          <li><router-link :to="{ name: 'home' }">Home</router-link></li>
-          <li>
+          <li class="underline-effect thin-effect">
+            <router-link :to="{ name: 'home' }">Home</router-link>
+          </li>
+          <li class="underline-effect thin-effect">
             <router-link :to="{ name: 'projects' }">Projects</router-link>
           </li>
-          <li><router-link :to="{ name: 'resume' }">Resume</router-link></li>
-          <li>
+          <li class="underline-effect thin-effect">
+            <router-link :to="{ name: 'resume' }">Resume</router-link>
+          </li>
+          <li class="underline-effect thin-effect">
             <router-link :to="{ name: 'contacts' }">Contacts</router-link>
           </li>
         </ul>
@@ -56,14 +60,16 @@ header {
         display: flex;
         li {
           margin-left: 10px;
+          font-size: 1.2rem;
           a {
-            color: inherit;
+            color: rgba(white, 0.7);
+            text-transform: uppercase;
             text-decoration: none;
             padding: 10px;
             border-radius: 8px;
 
             &.active {
-              background-color: rgba(255, 255, 255, 0.3);
+              color: white;
             }
           }
         }
