@@ -21,9 +21,6 @@ export default {
           console.log(error.message);
         });
     },
-    getImgPath(img) {
-      return "http://127.0.0.1:8000" + img;
-    },
   },
   computed: {
     type() {
@@ -47,7 +44,7 @@ export default {
         <div class="row g-0">
           <div class="col-md-4">
             <img
-              :src="getImgPath(project.img)"
+              :src="project.img"
               class="img-fluid rounded-start"
               :alt="project.title"
             />

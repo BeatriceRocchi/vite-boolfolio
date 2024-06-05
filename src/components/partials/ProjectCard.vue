@@ -9,33 +9,31 @@ export default {
 <template>
   <div class="col">
     <div class="card card-custom">
-      <div class="card-custom-front">
-        <div class="card-body">
-          <h5 class="card-title">{{ projectObject.title }}</h5>
-          <p class="card-text">
-            {{ projectObject.description }}
-          </p>
+      <div class="card-body">
+        <h5 class="card-title">{{ projectObject.title }}</h5>
 
-          <div>
-            <span class="badge text-bg-primary">
-              {{ projectObject.type?.name }}
-            </span>
-          </div>
-
-          <span
-            v-for="technology in projectObject.technologies"
-            :key="technology.id"
-            class="badge text-bg-success me-1"
-          >
-            {{ technology.name }}
+        <div>
+          <span class="badge text-bg-primary">
+            {{ projectObject.type?.name }}
           </span>
         </div>
+
+        <span
+          v-for="technology in projectObject.technologies"
+          :key="technology.id"
+          class="badge text-bg-success me-1"
+        >
+          {{ technology.name }}
+        </span>
       </div>
 
       <div class="card card-custom-back">
         <div
-          class="card-body d-flex justify-content-center align-items-center h-100"
+          class="card-body d-flex flex-column justify-content-center align-items-center h-100"
         >
+          <p class="card-text text-center text-white">
+            {{ projectObject.description }}
+          </p>
           <router-link
             :to="{
               name: 'projectDetail',
@@ -60,6 +58,10 @@ export default {
     min-height: 350px;
     position: relative;
 
+    &-front {
+      min-height: 350px;
+    }
+
     &-back {
       display: none;
       position: absolute;
@@ -71,8 +73,19 @@ export default {
       overflow-y: auto;
 
       .btn-custom {
-        background-color: white;
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
         width: fit-content;
+        padding: 8px 16px;
+        border-radius: 20px;
+        margin-top: 20px;
+        font-size: 0.8rem;
+
+        &:hover {
+          background-color: white;
+          color: $color-primary;
+        }
       }
     }
 
