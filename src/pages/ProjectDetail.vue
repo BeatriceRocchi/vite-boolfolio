@@ -38,26 +38,18 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <div class="card-container">
-      <div class="card mb-3">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img
-              :src="project.img"
-              class="img-fluid rounded-start"
-              :alt="project.title"
-            />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{ project.title }}</h5>
+  <div class="background-custom">
+    <h2>{{ project.title }}</h2>
+    <div class="container">
+      <div class="project-box">
+        <div class="img-box">
+          <img :src="project.img" :alt="project.title" />
+        </div>
 
-              <p class="card-text">
-                {{ project.description }}
-              </p>
-            </div>
-          </div>
+        <div class="text-box">
+          <p class="card-text">
+            {{ project.description }}
+          </p>
         </div>
       </div>
     </div>
@@ -65,10 +57,22 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.card-container {
+.project-box {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 100px);
+  border-radius: 10px;
+  background-color: rgba(white, 20%);
+  overflow: hidden;
+
+  .img-box {
+    width: 50%;
+  }
+
+  .text-box {
+    width: 50%;
+    padding: 20px 40px;
+    align-self: flex-start;
+  }
 }
 </style>

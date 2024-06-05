@@ -1,3 +1,4 @@
+// BUTTONS
 .btn-custom-primary {
   background-color: $color-primary;
   color: white;
@@ -8,18 +9,19 @@
   }
 }
 
-// .btn-custom-primary-outline {
-//   background-color: white;
-//   color: $color-primary;
-//   border: 3px solid $color-primary;
-//   border-radius: 20px;
+// BADGES
+.badge-custom-secondary {
+  background-color: $color-secondary;
+  margin: 5px;
+  font-size: 1rem;
+}
 
-//   &:hover {
-//     background-color: darken($color-primary, 5%);
-//     color: white;
-//   }
-// }
+.badge-custom-tertiary {
+  background-color: $color-tertiary;
+  margin: 5px;
+}
 
+// UNDERLINE EFFECT
 .underline-effect {
   position: relative;
   display: inline-block;
@@ -46,4 +48,10 @@
     height: 3px;
     bottom: -8px;
   }
+}
+
+// BACKGROUND CUSTOM
+.background-custom {
+  background: linear-gradient(110deg, white 60%, $color-primary 60%);
+  height: calc(100vh - 180px);
 }

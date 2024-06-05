@@ -10,6 +10,10 @@ export default {
   <div class="col">
     <div class="card card-custom">
       <div class="card-body">
+        <span class="badge badge-custom-secondary">
+          {{ projectObject.type?.name }}
+        </span>
+
         <h3 class="card-title">
           {{ projectObject.title }}
         </h3>
@@ -17,20 +21,15 @@ export default {
           {{ projectObject.description }}
         </p>
 
-        <div class="badge-container">
-          <span class="badge text-bg-primary">
-            {{ projectObject.type?.name }}
+        <div class="languages-box">
+          <i class="fa-solid fa-code"></i>
+          <span
+            v-for="technology in projectObject.technologies"
+            :key="technology.id"
+            class="badge badge-custom-tertiary"
+          >
+            {{ technology.name }}
           </span>
-
-          <div>
-            <span
-              v-for="technology in projectObject.technologies"
-              :key="technology.id"
-              class="badge text-bg-success me-1"
-            >
-              {{ technology.name }}
-            </span>
-          </div>
         </div>
       </div>
 
@@ -55,6 +54,8 @@ export default {
   .card-custom {
     min-height: 350px;
     position: relative;
+    // background-color: $color-primary;
+    // color: white;
 
     .card-body {
       display: flex;
@@ -62,13 +63,30 @@ export default {
       text-align: center;
       justify-content: center;
 
+      h3 {
+        letter-spacing: 3px;
+      }
+
+      .badge-custom-secondary {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
       .card-text {
         min-height: 100px;
+        margin: 10px 0 30px;
       }
-    }
 
-    .badge-container {
-      margin: 20px 0;
+      .languages-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i {
+          color: $color-tertiary;
+          font-size: 1.2rem;
+        }
+      }
     }
 
     .btn-custom-primary {
@@ -83,7 +101,7 @@ export default {
     }
 
     &:hover {
-      box-shadow: 0 0 15px 5px rgba(black, 0.2);
+      box-shadow: 0 0 20px 10px rgba(black, 0.2);
       transform: translateY(-20px);
       transition: all 0.5s ease;
 

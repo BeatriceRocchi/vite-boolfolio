@@ -79,33 +79,35 @@ export default {
 </script>
 
 <template>
-  <Loader v-if="isLoading" />
+  <div class="background-custom">
+    <Loader v-if="isLoading" />
 
-  <div v-else>
-    <h2>My recent projects</h2>
+    <div v-else>
+      <h2>My recent projects</h2>
 
-    <div class="container">
-      <div class="slider-wrapper">
-        <swiper
-          :pagination="{
-            dynamicBullets: true,
-          }"
-          :navigation="true"
-          :modules="modules"
-          class="mySwiper"
-          :slides-per-view="3"
-          :space-between="50"
-          @swiper="onSwiper"
-          @slideChange="onSlideChange"
-        >
-          <swiper-slide
-            class="my-5"
-            v-for="project in projects"
-            :key="project.id"
+      <div class="container">
+        <div class="slider-wrapper">
+          <swiper
+            :pagination="{
+              dynamicBullets: true,
+            }"
+            :navigation="true"
+            :modules="modules"
+            class="mySwiper"
+            :slides-per-view="3"
+            :space-between="50"
+            @swiper="onSwiper"
+            @slideChange="onSlideChange"
           >
-            <ProjectCard :projectObject="project" />
-          </swiper-slide>
-        </swiper>
+            <swiper-slide
+              class="my-5"
+              v-for="project in projects"
+              :key="project.id"
+            >
+              <ProjectCard :projectObject="project" />
+            </swiper-slide>
+          </swiper>
+        </div>
       </div>
     </div>
   </div>
