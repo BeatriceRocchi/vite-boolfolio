@@ -77,7 +77,7 @@ export default {
               placeholder="First name"
               aria-label="First name"
             />
-            <p class="text-danger">{{ errors.name.toString() }}</p>
+            <p class="text-danger">{{ errors.name?.toString() }}</p>
           </div>
 
           <div class="col-4">
@@ -90,7 +90,7 @@ export default {
               placeholder="Last name"
               aria-label="Last name"
             />
-            <p class="text-danger">{{ errors.surname.toString() }}</p>
+            <p class="text-danger">{{ errors.surname?.toString() }}</p>
           </div>
 
           <div class="col-4">
@@ -103,7 +103,7 @@ export default {
               placeholder="Email"
               aria-label="Email"
             />
-            <p class="text-danger">{{ errors.email.toString() }}</p>
+            <p class="text-danger">{{ errors.email?.toString() }}</p>
           </div>
 
           <div class="col-12 my-3">
@@ -115,7 +115,7 @@ export default {
               rows="3"
             >
             </textarea>
-            <p class="text-danger">{{ errors.message.toString() }}</p>
+            <p class="text-danger">{{ errors.message?.toString() }}</p>
           </div>
         </div>
 
