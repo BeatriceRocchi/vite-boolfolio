@@ -23,8 +23,19 @@ export default {
           Qui minima itaque officiis eos?
         </p>
       </div>
-      <div class="img-box">
-        <img src="../assets/img/profile_pic.jpg" alt="Profile picture" />
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="img-box flip-card-front">
+            <img src="../assets/img/profile_pic.jpg" alt="Profile picture" />
+          </div>
+          <div class="img-box flip-card-back">
+            <img
+              src="../assets/img/profile_pic_back.jpg"
+              alt="Profile picture back"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -114,7 +125,7 @@ export default {
     margin-bottom: 30px;
   }
 
-  .img-box {
+  .flip-card {
     margin-left: 50px;
     height: 400px;
     aspect-ratio: 1;
@@ -122,13 +133,34 @@ export default {
     border-radius: 50%;
     background-color: white;
     overflow: hidden;
+    perspective: 1000px;
 
-    img {
-      height: 100%;
+    .flip-card-inner {
+      position: relative;
       width: 100%;
-      object-fit: cover;
-      object-position: left;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+
+      .flip-card-front,
+      .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+
+        img {
+          object-position: left;
+        }
+      }
+
+      .flip-card-back {
+        transform: rotateY(180deg);
+      }
     }
+  }
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
   }
 }
 
